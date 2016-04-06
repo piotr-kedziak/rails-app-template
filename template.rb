@@ -13,16 +13,17 @@ FILE
 # default I18n files
 say 'creating I18n translations files'
 inside 'config/locales' do
-  template('pl.yml.tt')
-  template('application/form_errors/pl.yml')
-  template('devise/pl.yml')
-  template('devise/en.yml')
-  template('devise_invitable/pl.yml')
-  template('devise_invitable/en.yml')
-  template('flash/pl.yml')
-  template('nav/pl.yml')
-  template('users/pl.yml')
-  template('will_paginate/pl.yml')
+  template 'pl.yml.tt'
+  template 'en.yml.tt'
+  template 'application/form_errors/pl.yml'
+  template 'devise/pl.yml'
+  template 'devise/en.yml'
+  template 'devise_invitable/pl.yml'
+  template 'devise_invitable/en.yml'
+  template 'flash/pl.yml'
+  template 'nav/pl.yml'
+  template 'users/pl.yml'
+  template 'will_paginate/pl.yml'
 end
 
 after_bundle do
