@@ -1,0 +1,11 @@
+<%% if local_assigns[:errors] %>
+  <div class="alert alert-danger" role="alert">
+    <strong><%%= t '.header' %></strong>&nbsp;
+    <%%= t '.info' %>
+    <ul>
+      <%% errors.full_messages.each do |message| %>
+        <li><%%= message %></li>
+      <%% end %>
+    </ul>
+  </div>
+<%% end %>
