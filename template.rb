@@ -34,6 +34,16 @@ inside 'config/initializers' do
   template 'i18n.rb'
   template 'timezone.rb'
 end
+
+say 'creating views helpers'
+inside 'app/helpers' do
+  template 'btn_helper.rb'
+  template 'devise_helper.rb'
+  template 'form_helper.rb'
+  template 'layout_helper.rb'
+  template 'nav_helper.rb'
+end
+
 after_bundle do
   say 'initializeing git repository'
   git :init
