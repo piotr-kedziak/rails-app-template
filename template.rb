@@ -26,6 +26,13 @@ inside 'config/locales' do
   template 'will_paginate/pl.yml'
 end
 
+say 'creating initializers'
+inside 'config/initializers' do
+  template '_redis.rb'
+  template 'generators.rb'
+  template 'i18n.rb'
+  template 'timezone.rb'
+end
 after_bundle do
   say 'initializeing git repository'
   git :init
