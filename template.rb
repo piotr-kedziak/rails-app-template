@@ -1,4 +1,7 @@
 # Template file for new Rails app
+def source_paths
+  [File.expand_path(File.dirname(__FILE__))]
+end
 
 run 'cp config/database.yml config/database.yml.example'
 append_file '.gitignore', <<-FILE
