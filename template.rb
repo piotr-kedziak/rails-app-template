@@ -11,6 +11,7 @@ config/database.yml
 FILE
 
 after_bundle do
+  say 'initializeing git repository'
   git :init
   git add: "."
   git commit: %Q{ -m 'Initial commit' }
