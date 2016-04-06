@@ -12,6 +12,7 @@ FILE
 
 # default I18n files
 say 'creating I18n translations files'
+empty_directory 'config/locales'
 inside 'config/locales' do
   template 'pl.yml.tt'
   template 'en.yml.tt'
