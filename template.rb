@@ -63,6 +63,14 @@ end
 say 'clear jQuery'
 gsub_file 'app/assets/javascripts/application.js', "//= require jquery\n", ''
 gsub_file 'Gemfile', "gem 'jquery-rails'", "# gem 'jquery-rails'"
+
+say 'create SCSS files'
+inside 'app/assets/stylesheets' do
+  template '_colors.scss'
+  template '_functions.scss'
+  template '_initialize.css.scss'
+  template '_variables.scss'
+end
 after_bundle do
   say 'initializeing git repository'
   git :init

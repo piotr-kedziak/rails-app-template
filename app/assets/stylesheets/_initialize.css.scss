@@ -1,0 +1,29 @@
+@import '_colors';
+@import '_variables';
+@import '_functions';
+
+body {
+  background-color: $body_bg;
+  font: {
+    family: $font-family;
+    weight: $font-weight;
+    size: $font-size;
+  }
+  margin: 0;
+  // with botstrap nav
+  &.with_nav {
+    padding-top: 70px;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: $font-family;
+}
+
+h1, .h1, h2, .h2 {
+  font-weight: $header-font-weight;
+}
+
+h3, h4, h5, h6 {
+  font-weight: $font-weight;
+}
