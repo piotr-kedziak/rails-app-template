@@ -1,0 +1,8 @@
+pl:
+  app:
+    name: <%= app_name %>
+  login: Zaloguj się
+  back: Wstecz
+  register: Zarejestruj się
+  forgot_password: Przypomnienie hasła
+  dashboard: Pulpit

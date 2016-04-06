@@ -1,0 +1,44 @@
+pl:
+  users:
+    passwords:
+      new:
+        header: Odzyskiwanie hasła
+        send: Wyślij
+    registrations:
+      new:
+        header: Rejestracja
+        conditions: Akceptuję warunki serwisu zawarte w regulaminie
+        cookies: Nie chcę widzieć powiadomień o plikach cookies
+    sessions:
+      new:
+        header: Zaloguj się
+        remember_me: Zapamiętaj mnie
+  activerecord:
+    models:
+      user: Użytkownik
+    attributes:
+      user:
+        email: e-mail
+        password: Hasło
+        password_confirmation: Potwierdzenie hasła
+        current_password: Aktualne hasło
+        remember_me: Zapamiętaj mnie
+        terms_accepted: Akceptacja regulamin
+        cookies_accepted: Zgoda na ciasteczka
+    errors:
+      messages:
+        email: musi być wypełniony
+        confirmation: nie zgadza się z hasłem
+      models:
+        user:
+          attributes:
+            email:
+              blank: nie może być pusty
+              taken: jest już używany
+              invalid: niepoprawny
+            password:
+              blank: nie może być puste
+            terms_accepted:
+              accepted: jest wymagana
+            cookies_accepted:
+              accepted: jest wymagana
