@@ -71,6 +71,51 @@ inside 'app/assets/stylesheets' do
   template '_initialize.css.scss'
   template '_variables.scss'
 end
+
+say 'adding gems'
+gsub_file 'Gemfile', /group :development, :test do\n.*\nend/m, <<-FILE
+group :development, :test do
+  # debugger
+  gem 'pry-byebug'
+  gem 'better_errors'
+  gem 'bullet'
+  # testing
+  gem 'rspec-rails'
+  gem 'cucumber-rails', require: false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+  gem 'rails-controller-testing'
+end
+
+group :development do
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 3.0'
+  gem 'listen', '~> 3.0.5'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  # Guard::RSpec automatically run your specs (much like autotest) https://rubygems.org/gems/guard-rspec
+  # https://github.com/guard/guard-rspec
+  gem 'guard-rspec', require: false
+  # Guard::Bundler automatically install/update your gem bundle when needed
+  gem 'guard-bundler', require: false
+  # Guard::Cucumber allows you to automatically run Cucumber features when files are modified.
+  gem 'guard-cucumber'
+  gem 'webrat'
+  # The easiest way to get a working readline implementation is to install rb-readline, a pure Ruby readline implementation.
+  gem 'rb-readline'
+  # Guard notifications in OSX Notification center
+  gem 'terminal-notifier-guard'
+  gem 'terminal-notifier'
+  # https://github.com/ruckus/active-record-query-trace
+  gem 'active_record_query_trace'
+  # https://github.com/josevalim/rails-footnotes
+  # gem 'rails-footnotes'
+  # Rails Panel for Chrome
+  # gem 'meta_request'
+end
+FILE
+
 after_bundle do
   say 'initializeing git repository'
   git :init
