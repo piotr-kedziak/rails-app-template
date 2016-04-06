@@ -59,6 +59,10 @@ inside 'app/views' do
   template 'nav/_logout.html.erb'
   template 'nav/_top.html.erb'
 end
+
+say 'clear jQuery'
+gsub_file 'app/assets/javascripts/application.js', "//= require jquery\n", ''
+gsub_file 'Gemfile', "gem 'jquery-rails'", "# gem 'jquery-rails'"
 after_bundle do
   say 'initializeing git repository'
   git :init
