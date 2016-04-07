@@ -1,0 +1,10 @@
+<%% cache [name, path, current_page?(path), local_assigns[:id], local_assigns[:badge]] do %>
+  <li class="<%%= 'active' if current_page?(path) %>" id="<%%= local_assigns[:id] %>">
+    <%%= link_to path do %>
+      <%%= name %>
+      <%% if local_assigns[:badge].to_i > 0 %>
+        <span class="badge"><%%= local_assigns[:badge] %></span>
+      <%% end %>
+    <%% end %>
+  </li>
+<%% end %>

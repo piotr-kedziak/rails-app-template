@@ -1,0 +1,9 @@
+<%% cache [name, message] do %>
+  <div class="alert <%%= name == 'alert' ? 'alert-danger' : 'alert-info' %> alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert">
+      <span aria-hidden="true">&times;</span>
+      <span class="sr-only"><%%= t 'flash.close' %></span>
+    </button>
+    <strong><%%= t "flash.#{name}" %></strong> <%%= raw message %>
+  </div>
+<%% end %>

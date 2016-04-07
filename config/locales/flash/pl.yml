@@ -1,0 +1,5 @@
+pl:
+  flash:
+    alert: Ostreżenie
+    close: Zamknij
+    notice: Informacja

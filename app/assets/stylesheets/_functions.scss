@@ -1,0 +1,106 @@
+@mixin css3-prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+   -khtml-#{$property}: #{$value};
+     -moz-#{$property}: #{$value};
+      -ms-#{$property}: #{$value};
+       -o-#{$property}: #{$value};
+          #{$property}: #{$value};
+}
+
+@mixin border-radius($radius) {
+  @include css3-prefix('border-radius', $radius);
+}
+
+@mixin border-top-left-radius($radius) {
+  -webkit-border-top-left-radius: $radius;
+     -moz-border-top-left-radius: $radius;
+      -ms-border-top-left-radius: $radius;
+       -o-border-top-left-radius: $radius;
+          border-top-left-radius: $radius;
+}
+
+@mixin border-top-right-radius($radius) {
+  -webkit-border-top-right-radius: $radius;
+     -moz-border-top-right-radius: $radius;
+      -ms-border-top-right-radius: $radius;
+       -o-border-top-right-radius: $radius;
+          border-top-right-radius: $radius;
+}
+
+@mixin border-bottom-right-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+     -moz-border-bottom-right-radius: $radius;
+      -ms-border-bottom-right-radius: $radius;
+       -o-border-bottom-right-radius: $radius;
+          border-bottom-right-radius: $radius;
+}
+
+@mixin border-bottom-left-radius($radius) {
+  -webkit-border-bottom-left-radius: $radius;
+     -moz-border-bottom-left-radius: $radius;
+      -ms-border-bottom-left-radius: $radius;
+       -o-border-bottom-left-radius: $radius;
+          border-bottom-left-radius: $radius;
+}
+
+@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: "") {
+  @if ($inset != "") {
+    @include css3-prefix('box-shadow', $inset $x $y $blur $color);
+  } @else {
+    @include css3-prefix('box-shadow', $x $y $blur $color);
+  }
+}
+
+@mixin box-shadow-none() {
+  @include css3-prefix('box-shadow', 'none');
+}
+
+@mixin hide-text {
+  text-indent: -9999px;
+  overflow: hidden;
+}
+
+@mixin background-retina($image, $image-retina, $width:0, $height:0) {
+  background: {
+    repeat: no-repeat;
+    position: center center;
+    size: cover;
+    image: asset-url($image);
+  }
+  @if $width > 0 {
+    @if $height > 0 {
+      background-size: $width $height;
+    }
+  }
+  @media only screen and (min--moz-device-pixel-ratio: 1.3),
+  only screen and (-o-min-device-pixel-ratio: 2.6/2),
+  only screen and (-webkit-min-device-pixel-ratio: 1.3),
+  only screen and (min-device-pixel-ratio: 1.3),
+  only screen and (min-resolution: 1.3dppx) {
+    background-image: asset-url($image-retina);
+  }
+}
+
+$break-small: 768px;
+$break-large: 1024px;
+
+// usage:
+// .profile-pic {
+//   @include respond-to(phone) { width: 100% ;}
+//   @include respond-to(tablet) { width: 125px; }
+//   @include respond-to(wide-screens) { float: none; }
+// }
+@mixin respond-to($media) {
+  @if $media == phone {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == tablet {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == tablet-and-desktop {
+    @media only screen and (min-width: $break-small + 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}

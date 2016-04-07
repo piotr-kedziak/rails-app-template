@@ -1,0 +1,8 @@
+<%% content_for :content do %>
+  <%%= render partial: 'nav/top' if show_top_nav? %>
+  <div class="container">
+    <%%= render partial: 'flash/notifications' if flash.present? %>
+    <%%= yield %>
+  </div>
+<%% end %>
+<%%= render template: 'layouts/base' %>

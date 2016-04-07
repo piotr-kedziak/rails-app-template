@@ -1,0 +1,8 @@
+en:
+  app:
+    name: <%= app_name %>
+  login: Login
+  back: Back
+  register: Register
+  forgot_password: Forgot password
+  dashboard: Dashboard

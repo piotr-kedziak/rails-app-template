@@ -1,0 +1,25 @@
+<%%= render partial: 'header', object: t('.header') %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%%= t '.general' %>
+  </div>
+  <div class="panel-body">
+    <%% #= render partial: 'users/form' %>
+  </div>
+</div>
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <%%= t '.important' %>
+  </div>
+  <div class="panel-body">
+    <%%= render partial: 'form' %>
+  </div>
+</div>
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <%%= t '.delete' %>
+  </div>
+  <div class="panel-body">
+    <%%= render partial: 'users/registrations/destroy' %>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+pl:
+  application:
+    form_errors:
+      header: "Błąd:"
+      info: Proszę poprawić pola zaznaczone na czerowno

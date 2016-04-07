@@ -1,0 +1,11 @@
+<%% cache resource_name do %>
+  <div class="login-with">
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <%%= link_to(omniauth_authorize_path(resource_name, :facebook), class: 'btn facebook-login') do %>
+          <i class="fa fa-facebook-square"></i><%%= t '.facebook' %>
+        <%% end %>
+      </div>
+    </div>
+  </div>
+<%% end %>
