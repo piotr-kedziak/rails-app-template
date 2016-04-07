@@ -286,6 +286,12 @@ inside 'features' do
   template 'nav.feature'
 end
 
+# database setup
+say 'Preparing database'
+run 'rails db:create'
+run 'rails db:migrate'
+run 'rails db:migrate RAILS_ENV=test'
+
 after_bundle do
   say 'initializeing git repository'
   git :init
