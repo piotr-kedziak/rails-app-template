@@ -215,6 +215,29 @@ gsub_file('config/initializers/devise.rb',
   /config.sign_out_via = :delete/,
   'config.sign_out_via = Rails.env.test? ? [:delete, :get] : :delete')
 
+# My custom bootstrap scaffold generator
+say 'Installing bootstrap scaffold generator...'
+inside 'lib/rails/generators/erb/scaffold' do
+  copy_file 'scaffold_generator.rb'
+end
+inside 'lib/rails/generators/rails/bootstrap_scaffold_controller' do
+  copy_file 'bootstrap_scaffold_controller_generator.rb'
+  copy_file 'templates/controller.rb'
+  copy_file 'templates/localization.rb'
+end
+inside 'lib/rails/generators/rails/scaffold' do
+  copy_file 'bootstrap_scaffold_generator.rb'
+end
+inside 'lib/templates/erb/scaffold' do
+  copy_file '_empty.html.erb'
+  copy_file '_form.html.erb'
+  copy_file '_list.html.erb'
+  copy_file 'edit.html.erb'
+  copy_file 'index.html.erb'
+  copy_file 'new.html.erb'
+  copy_file 'show.html.erb'
+end
+
 # RSpec
 say 'installing RSpec...'
 generate 'rspec:install'
