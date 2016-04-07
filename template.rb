@@ -144,6 +144,7 @@ end
 FILE
 
 # Devise
+say 'Intalling Devise...'
 gem 'devise', '>= 4.0.0.rc2', github: 'plataformatec/devise'
 run 'bundle install'
 generate 'devise:install'
@@ -202,6 +203,7 @@ gsub_file('config/initializers/devise.rb',
   'config.sign_out_via = Rails.env.test? ? [:delete, :get] : :delete')
 
 # RSpec
+say 'installing RSpec...'
 generate 'rspec:install'
 empty_directory_with_keep_file 'spec/support'
 empty_directory_with_keep_file 'spec/models'
@@ -249,6 +251,7 @@ inside 'spec' do
 end
 
 # Cucumber
+say 'Installing Cucumber...'
 generate 'cucumber:install'
 append_file 'features/support/env.rb' do <<-FILE
 
