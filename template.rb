@@ -129,6 +129,64 @@ group :development do
 end
 FILE
 
+# Devise
+gem 'devise', '>= 4.0.0.rc2', github: 'plataformatec/devise'
+run 'bundle install'
+generate 'devise:install'
+inject_into_file 'config/environments/development.rb', after: "config.action_mailer.raise_delivery_errors = false\n" do <<-FILE
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+FILE
+end
+generate 'devise User'
+# terms
+generate 'migration add_terms_accepted_to_users terms_accepted:boolean:index'
+migration_file = Dir['db/migrate/*_add_terms_accepted_to_users.rb'].first
+inject_into_file migration_file, after: ':boolean' do
+  ', default: true'
+end
+# cookies
+generate 'migration add_cookies_accepted_to_users cookies_accepted:boolean:index'
+migration_file = Dir['db/migrate/*_add_cookies_accepted_to_users.rb'].first
+inject_into_file migration_file, after: ':boolean' do
+  ', default: true'
+end
+# user model
+inject_into_file 'app/models/user.rb', before: "end\n" do <<-FILE
+
+  validates :terms_accepted, acceptance: true
+  validates :cookies_accepted, acceptance: true
+FILE
+end
+# devise routes
+inside 'config' do
+  template 'routes.rb'
+end
+# devise views
+inside 'app/views/users' do
+  template 'confirmations/new.html.erb'
+  template 'mailer/confirmation_instructions.html.erb'
+  template 'mailer/reset_password_instructions.html.erb'
+  template 'mailer/unlock_instructions.html.erb'
+  template 'passwords/edit.html.erb'
+  template 'passwords/new.html.erb'
+  template 'registrations/_destroy.html.erb'
+  template 'registrations/_form.html.erb'
+  template 'registrations/edit.html.erb'
+  template 'registrations/new.html.erb'
+  template 'sessions/new.html.erb'
+  template 'shared/_links.html.erb'
+  template 'shared/_login_with.html.erb'
+  template 'unlocks/new.html.erb'
+  template '_form.html.erb'
+end
+# devise initializer
+gsub_file('config/initializers/devise.rb',
+  /# config.scoped_views = false/,
+  'config.scoped_views = true')
+gsub_file('config/initializers/devise.rb',
+  /config.sign_out_via = :delete/,
+  'config.sign_out_via = Rails.env.test? ? [:delete, :get] : :delete')
+
 after_bundle do
   say 'initializeing git repository'
   git :init

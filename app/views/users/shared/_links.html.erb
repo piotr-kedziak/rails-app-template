@@ -1,0 +1,20 @@
+<div class="links">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 text-center">
+      <%% if controller_name != 'sessions' %>
+        <%%= link_to t('login'), new_session_path(resource_name), class: 'btn btn-block btn-success' %>
+      <%% else %>
+        <%%= link_to t('register'), new_registration_path(resource_name), class: 'btn btn-block btn-info' %>
+      <%% end %>
+    </div>
+    <div class="col-xs-12 col-sm-6 text-center">
+      <%% if devise_mapping.recoverable? && controller_name != 'passwords' %>
+        <%%= link_to t('forgot_password'), new_password_path(resource_name), class: 'btn btn-block btn-default' %>
+      <%% else %>
+        <%% if devise_mapping.registerable? && controller_name != 'registrations' %>
+          <%%= link_to t('register'), new_registration_path(resource_name), class: 'btn btn-block btn-info' %>
+        <%% end %>
+      <%% end %>
+    </div>
+  </div>
+</div>
