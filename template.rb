@@ -62,7 +62,6 @@ end
 
 say 'clear jQuery'
 gsub_file 'app/assets/javascripts/application.js', "//= require jquery\n", ''
-gsub_file 'Gemfile', "gem 'jquery-rails'", "# gem 'jquery-rails'"
 
 say 'create SCSS files'
 inside 'app/assets/stylesheets' do
