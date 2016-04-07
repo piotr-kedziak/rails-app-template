@@ -72,6 +72,9 @@ inside 'app/assets/stylesheets' do
   template '_variables.scss'
 end
 
+# Redis
+gsub_file 'Gemfile', /# gem 'redis'/, "gem 'redis'"
+
 # Dalli
 gem 'dalli'
 gem 'dalli-ui'
