@@ -225,12 +225,14 @@ end
 FILE
 end
 # copy basic RSpec tests
-copy_file 'spec/controllers/home_controller_spec.rb'
-copy_file 'spec/controllers/landing_controller_spec.rb'
-copy_file 'spec/helpers/btn_helper_spec.rb'
-copy_file 'spec/models/user_spec.rb'
-copy_file 'spec/views/home/index.html.erb_spec.rb'
-copy_file 'spec/views/landing/index.html.erb_spec.rb'
+inside 'spec' do
+  copy_file 'controllers/home_controller_spec.rb'
+  copy_file 'controllers/landing_controller_spec.rb'
+  copy_file 'helpers/btn_helper_spec.rb'
+  copy_file 'models/user_spec.rb'
+  copy_file 'views/home/index.html.erb_spec.rb'
+  copy_file 'views/landing/index.html.erb_spec.rb'
+end
 
 after_bundle do
   say 'initializeing git repository'
