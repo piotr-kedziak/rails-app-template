@@ -234,6 +234,28 @@ inside 'spec' do
   copy_file 'views/landing/index.html.erb_spec.rb'
 end
 
+# Cucumber
+generate 'cucumber:install'
+append_file 'features/support/env.rb' do <<-FILE
+
+# Factory Girl
+World(FactoryGirl::Syntax::Methods)
+FILE
+end
+# copy basic features / tests / support files
+inside 'features' do
+  template 'support/debugging.rb'
+  # steps
+  template 'step_definitions/auth_steps.rb'
+  template 'step_definitions/links_steps.rb'
+  template 'step_definitions/nav_steps.rb'
+  template 'step_definitions/navigation_steps.rb'
+  # features
+  template 'auth.feature'
+  template 'landing.feature'
+  template 'nav.feature'
+end
+
 after_bundle do
   say 'initializeing git repository'
   git :init
