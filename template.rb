@@ -286,6 +286,13 @@ inside 'features' do
   template 'nav.feature'
 end
 
+# FactoryGirl
+say 'Installing FactoryGirl...'
+generate 'factory_girl:model User'
+inside 'factories' do
+  copy_file 'users.rb'
+end
+
 # database setup
 say 'Preparing database'
 run 'rails db:create'
