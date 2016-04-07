@@ -150,6 +150,12 @@ inside 'app/views/landing' do
   template 'index.html.erb'
 end
 
+say 'Creating dashboard...'
+generate 'controller home index'
+inside 'app/views/home' do
+  template 'index.html.erb'
+end
+
 # Devise
 say 'Intalling Devise...'
 gem 'devise', '>= 4.0.0.rc2', github: 'plataformatec/devise'
