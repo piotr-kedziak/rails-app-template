@@ -187,6 +187,51 @@ gsub_file('config/initializers/devise.rb',
   /config.sign_out_via = :delete/,
   'config.sign_out_via = Rails.env.test? ? [:delete, :get] : :delete')
 
+# RSpec
+generate 'rspec:install'
+empty_directory_with_keep_file 'spec/support'
+empty_directory_with_keep_file 'spec/models'
+empty_directory_with_keep_file 'spec/routing'
+# RSpec config
+inject_into_file 'spec/rails_helper.rb', after: "require 'rspec/rails'\n" do <<-FILE
+require 'shoulda/matchers'
+require 'factory_girl'
+# note: require 'devise' after require 'rspec/rails'
+require 'devise'
+require 'mocha/mini_test'
+FILE
+end
+inject_into_file 'spec/rails_helper.rb', after: "config.infer_spec_type_from_file_location!\n" do <<-FILE
+
+  config.include FactoryGirl::Syntax::Methods
+  config.include Devise::TestHelpers, type: [:controller, :helper]
+FILE
+end
+append_file 'spec/rails_helper.rb' do <<-FILE
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    # Choose a test framework:
+    with.test_framework :rspec
+
+    # Or, choose the following (which implies all of the above):
+    with.library :rails
+  end
+end
+
+def main_app
+  Rails.application.class.routes.url_helpers
+end
+FILE
+end
+# copy basic RSpec tests
+copy_file 'spec/controllers/home_controller_spec.rb'
+copy_file 'spec/controllers/landing_controller_spec.rb'
+copy_file 'spec/helpers/btn_helper_spec.rb'
+copy_file 'spec/models/user_spec.rb'
+copy_file 'spec/views/home/index.html.erb_spec.rb'
+copy_file 'spec/views/landing/index.html.erb_spec.rb'
+
 after_bundle do
   say 'initializeing git repository'
   git :init
