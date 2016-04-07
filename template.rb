@@ -143,6 +143,13 @@ group :test do
 end
 FILE
 
+# landing page
+say 'Creating landing page...'
+generate 'controller landing index'
+inside 'app/views/landing' do
+  template 'index.html.erb'
+end
+
 # Devise
 say 'Intalling Devise...'
 gem 'devise', '>= 4.0.0.rc2', github: 'plataformatec/devise'
