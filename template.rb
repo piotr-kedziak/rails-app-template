@@ -126,6 +126,21 @@ group :development do
   # Rails Panel for Chrome
   # gem 'meta_request'
 end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'launchy'
+  gem 'selenium-webdriver'
+  # performance testing https://github.com/rails/rails-perftest
+  # gem 'rails-perftest'
+  gem 'ruby-prof'
+  gem 'mocha'
+  # Time freeze or travel for mocking
+  # https://github.com/travisjeffery/timecop
+  gem 'timecop'
+end
 FILE
 
 # Devise
