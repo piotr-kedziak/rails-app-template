@@ -17,7 +17,10 @@ pl:
       unconfirmed: "Aby kontynuować musisz aktywować swoje konto."
     mailer:
       confirmation_instructions:
-        subject: "Instrukcja aktywacji konta"
+        subject: Instrukcja aktywacji konta
+        welcome: "Dzień dobry,"
+        info: "Aby potwierdzić swój adres email kliknij na poniższy odnośnik:"
+        confirm: Potwierdź
       reset_password_instructions:
         subject: "Instrukcja resetowania hasła."
         header: "Drogi użytkowniku"
@@ -30,6 +33,10 @@ pl:
           Twoje hasło nie zostanie zmienione do momentu otwarcia powyższego odnośnika i wprowadzenia przez Ciebie nowego hasła.
       unlock_instructions:
         subject: "Instrukcja odblokowania konta"
+        info: |
+          Twoje konto zostało zablokowane z powodu zbyt wielu nieudanych prób logowania
+        click: "Kliknij w poniższy link, aby je odblokować:"
+        unlock: Odblokuj moje konto
     omniauth_callbacks:
       failure: "Logowanie przez konto %{kind} zakończyło się błędem: \"%{reason}\"."
       success: ""

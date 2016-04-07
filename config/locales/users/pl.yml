@@ -1,5 +1,9 @@
 pl:
   users:
+    confirmations:
+      new:
+        header: Wysyłka potwierdzenia e-maila
+        resend: Wyślij potwierdzenie
     passwords:
       new:
         header: Odzyskiwanie hasła
@@ -13,6 +17,10 @@ pl:
       new:
         header: Zaloguj się
         remember_me: Zapamiętaj mnie
+    unlocks:
+      new:
+        header: Odblokowanie konta
+        resend: Wyślij instrukcje
   activerecord:
     models:
       user: Użytkownik
