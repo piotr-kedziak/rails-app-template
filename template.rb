@@ -72,7 +72,17 @@ inside 'app/assets/stylesheets' do
   template '_variables.scss'
 end
 
-say 'adding gems'
+# Dalli
+gem 'dalli'
+gem 'dalli-ui'
+gsub_file 'config/environments/production.rb', /.*config.action_controller.perform_caching = true\n/, <<-FILE
+
+  # Cache
+  config.cache_store = :dalli_store, '127.0.0.1', { namespace: '#{app_name.downcase.gsub(' ', '_')}' }
+  config.action_controller.perform_caching = true
+FILE
+
+say 'adding gems for development and test environments'
 gsub_file 'Gemfile', /group :development, :test do\n.*\nend/m, <<-FILE
 group :development, :test do
   # debugger
