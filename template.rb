@@ -75,12 +75,12 @@ end
 # Dalli
 gem 'dalli'
 gem 'dalli-ui'
-gsub_file 'config/environments/production.rb', /.*config.action_controller.perform_caching = true\n/, <<-FILE
+inject_into_file 'config/environments/production.rb', before: "  config.action_controller.perform_caching" do <<-FILE
 
   # Cache
   config.cache_store = :dalli_store, '127.0.0.1', { namespace: '#{app_name.downcase.gsub(' ', '_')}' }
-  config.action_controller.perform_caching = true
 FILE
+end
 
 say 'adding gems for development and test environments'
 gsub_file 'Gemfile', /group :development, :test do\n.*\nend/m, <<-FILE
