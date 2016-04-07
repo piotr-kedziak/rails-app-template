@@ -293,6 +293,11 @@ inside 'factories' do
   copy_file 'users.rb'
 end
 
+# Guard
+say 'Installing Guard...'
+run 'bundle exec guard init'
+run 'bundle binstub guard'
+
 # database setup
 say 'Preparing database'
 run 'rails db:create'
