@@ -18,9 +18,9 @@ pl:
 <% attributes_names.each do |name| -%>
       <%= name %>: <%= name %>
 <% end -%>
-      empty:
-        info: Brak <%= class_name %>
-        add_first: Dodaj pierwszy
+    empty:
+      info: Brak <%= class_name %>
+      add_first: Dodaj pierwszy
   activerecord:
     models:
       <%= namespaced_file_path if namespaced? %><%= singular_table_name %>: <%= class_name %>
