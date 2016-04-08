@@ -1,8 +1,14 @@
 pl:
   app:
     name: <%= app_name %>
-  login: Zaloguj się
   back: Wstecz
-  register: Zarejestruj się
-  forgot_password: Przypomnienie hasła
+  confirm:
+    delete: Czy na pewno chcesz usunąć ten obiekt?
   dashboard: Pulpit
+  destroy: Usuń
+  edit: Edytuj
+  forgot_password: Przypomnienie hasła
+  login: Zaloguj się
+  register: Zarejestruj się
+  send: Zapisz
+  show: Pokaż
