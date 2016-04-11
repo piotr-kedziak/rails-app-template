@@ -72,9 +72,15 @@ inside 'app/assets/stylesheets' do
 end
 
 # Redis
-gsub_file 'Gemfile', /# gem 'redis'/, "gem 'redis'"
+say 'Installing Redis...'
+if File.open('Gemfile') { |f| f.find { |l| l =~ /# gem 'redis'/ } }
+  gsub_file 'Gemfile', /# gem 'redis'/, "gem 'redis'"
+else
+  gem 'redis'
+end
 
 # Dalli
+say 'Installing Dalli...'
 gem 'dalli'
 gem 'dalli-ui'
 inject_into_file 'config/environments/production.rb', before: "  config.action_controller.perform_caching" do <<-FILE
