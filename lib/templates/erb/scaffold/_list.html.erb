@@ -9,22 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
-        <%% cache <%= singular_table_name %> do %>
-          <tr>
-<% attributes.reject(&:password_digest?).each do |attribute| -%>
-            <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
-<% end -%>
-            <td class='text-right'>
-              <div class="btn-group" role="group">
-                <%%= link_to t('show'), <%= singular_table_name %>, class: 'btn btn-sm btn-info' %>
-                <%%= link_to t('edit'), edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'btn btn-sm btn-warning' %>
-                <%%= link_to t('destroy'), <%= singular_table_name %>, method: :delete, data: { confirm: t('confirm') }, class: 'btn btn-sm btn-danger' %>
-              </div>
-            </td>
-          </tr>
-        <%% end %>
-      <%% end %>
+      <%%= render partial: '<%= plural_table_name %>/list/<%= singular_table_name %>', collection: @<%= plural_table_name %> %>
     </tbody>
   </table>
 <%% else %>

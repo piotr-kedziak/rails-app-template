@@ -229,6 +229,7 @@ inside 'lib/rails/generators/rails/scaffold' do
   copy_file 'bootstrap_scaffold_generator.rb'
 end
 inside 'lib/templates/erb/scaffold' do
+  copy_file 'list/_element.html.erb'
   copy_file '_empty.html.erb'
   copy_file '_form.html.erb'
   copy_file '_list.html.erb'

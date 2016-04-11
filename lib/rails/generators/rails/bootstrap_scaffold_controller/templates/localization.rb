@@ -6,12 +6,10 @@ pl:
       updated: Zaktualizowano dane
     destroy:
       deleted: Usunięto <%= class_name %>
-    form:
     new:
       header: Dodawanie <%= class_name %>
     edit:
       header: Aktualizacja <%= class_name %>
-    show:
     index:
       header: Lista <%= class_name %>
       new: Dodaj nowy

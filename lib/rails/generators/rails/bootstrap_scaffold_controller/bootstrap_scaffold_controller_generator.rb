@@ -6,7 +6,7 @@ module Rails
       source_root File.expand_path("../templates", __FILE__)
 
       def create_localization_files
-        template "localization.rb", File.join('config/locales', controller_class_path, "#{controller_file_name}/pl.yml")
+        template 'localization.rb', File.join('config/locales', controller_class_path, "#{controller_file_name}/pl.yml")
       end
     end
   end

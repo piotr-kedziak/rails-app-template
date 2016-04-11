@@ -9,6 +9,7 @@ pl:
   edit: Edytuj
   forgot_password: Przypomnienie hasła
   login: Zaloguj się
+  logout: Wyloguj się
   register: Zarejestruj się
   send: Zapisz
   show: Pokaż

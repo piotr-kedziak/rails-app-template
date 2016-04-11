@@ -1,15 +1,5 @@
 <%%= form_for(@<%= singular_table_name %>, class: 'form-horizontal') do |f| %>
-  <%% if @<%= singular_table_name %>.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-      <strong><%%= t 'errors.alert.header' %></strong>&nbsp;
-      <%%= t 'errors.alert.info' %>
-      <ul>
-        <%% @<%= singular_table_name %>.errors.full_messages.each do |message| %>
-          <li><%%= message %></li>
-        <%% end %>
-      </ul>
-    </div>
-  <%% end %>
+  <%%= show_form_errors_if_any @<%= singular_table_name %> %>
 <% attributes.each do |attribute| -%>
   <div class="form-group <%%= 'has-error' if @<%= singular_table_name %>.errors[:<%= attribute.column_name %>].present? %>">
 <% if attribute.password_digest? -%>
