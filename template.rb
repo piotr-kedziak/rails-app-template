@@ -222,6 +222,11 @@ gsub_file('config/initializers/devise.rb',
   /config.sign_out_via = :delete/,
   'config.sign_out_via = Rails.env.test? ? [:delete, :get] : :delete')
 
+# database setup
+say 'Preparing database...'
+run 'rake db:drop'
+run 'rake db:create'
+
 # My custom bootstrap scaffold generator
 say 'Installing bootstrap scaffold generator...'
 inside 'lib/rails/generators/erb/scaffold' do
@@ -330,10 +335,9 @@ run 'bundle exec guard init'
 run 'bundle binstub guard'
 
 # database setup
-say 'Preparing database'
-run 'rails db:create'
-run 'rails db:migrate'
-run 'rails db:migrate RAILS_ENV=test'
+say 'Running migrations...'
+run 'rake db:migrate'
+run 'rake db:migrate RAILS_ENV=test'
 
 after_bundle do
   say 'initializeing git repository'
