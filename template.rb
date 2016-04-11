@@ -182,8 +182,8 @@ end
 # user model
 inject_into_file 'app/models/user.rb', before: "end\n" do <<-FILE
 
-  validates :terms_accepted, acceptance: true
-  validates :cookies_accepted, acceptance: true
+  validates :terms_accepted, acceptance: { accept: true }
+  validates :cookies_accepted, acceptance: { accept: true }
 FILE
 end
 # devise routes
