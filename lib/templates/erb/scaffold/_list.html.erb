@@ -1,4 +1,4 @@
-<%% if @<%= plural_table_name %>.present? %>
+<%% if list.present? %>
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -9,9 +9,9 @@
       </tr>
     </thead>
     <tbody>
-      <%%= render partial: '<%= plural_table_name %>/list/<%= singular_table_name %>', collection: @<%= plural_table_name %> %>
+      <%%= render partial: '<%= plural_table_name %>/list/<%= singular_table_name %>', collection: list %>
     </tbody>
   </table>
 <%% else %>
-  <%%= render "empty" %>
+  <%%= render 'empty' %>
 <%% end %>
