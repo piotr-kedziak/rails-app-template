@@ -4,11 +4,28 @@ pl:
       new:
         header: Wysyłka potwierdzenia e-maila
         resend: Wyślij potwierdzenie
+    form:
+      update_account: Zapisz dane konta
     passwords:
       new:
         header: Odzyskiwanie hasła
         send: Wyślij
     registrations:
+      destroy:
+        confirmation: Czy na pewno chcesz usunąć swoje konto i wszystkie dane?
+        destroy: Usuń konto
+        info: |
+          Usunięcie konta spowoduje bezpowrotne wymazanie
+          wszystkoch danych z nim związanych!
+      edit_form:
+        info:
+          current_password: Wpisz aktualne hasło, aby zatwierdzić zmiany
+          password: Wpisz nowe hasło (i potwierdzenie) jeśli chesz je zmienić
+      edit:
+        header: Edycja konta
+        general: Dane ogólne
+        important: Dane chronione hasłem
+        delete: Usuwanie konta
       new:
         header: Rejestracja
         conditions: Akceptuję warunki serwisu zawarte w regulaminie
@@ -26,13 +43,14 @@ pl:
       user: Użytkownik
     attributes:
       user:
+        cookies_accepted: Zgoda na ciasteczka
+        current_password: Aktualne hasło
         email: e-mail
+        last_sign_in_at: Ostatnie logowanie
         password: Hasło
         password_confirmation: Potwierdzenie hasła
-        current_password: Aktualne hasło
         remember_me: Zapamiętaj mnie
         terms_accepted: Akceptacja regulamin
-        cookies_accepted: Zgoda na ciasteczka
     errors:
       messages:
         email: musi być wypełniony
@@ -40,6 +58,8 @@ pl:
       models:
         user:
           attributes:
+            current_password:
+              blank: musi być podane
             email:
               blank: nie może być pusty
               taken: jest już używany
