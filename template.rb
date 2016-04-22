@@ -92,6 +92,9 @@ inject_into_file 'app/controllers/application_controller.rb', after: "ActionCont
 FILE
 end
 
+say 'update CSRF in Application Controller settings...'
+gsub_file 'app/controllers/application_controller.rb', /protect_from_forgery with: :exception/, 'protect_from_forgery with: :null_session'
+
 # Redis
 say 'Installing Redis...'
 if File.open('Gemfile') { |f| f.find { |l| l =~ /# gem 'redis'/ } }
