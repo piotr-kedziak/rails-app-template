@@ -248,6 +248,14 @@ gsub_file('config/initializers/devise.rb',
   /config.sign_out_via = :delete/,
   'config.sign_out_via = Rails.env.test? ? [:delete, :get] : :delete')
 
+say 'Adding mailing settings for environments files...'
+inject_into_file 'config/environments/development.rb', after: "config.action_mailer.raise_delivery_errors = false\n" do
+  "config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }"
+end
+inject_into_file 'config/environments/test.rb', after: "config.action_mailer.delivery_method = :test\n" do
+  "config.action_mailer.default_url_options = { host: 'localhost' }"
+end
+
 # database setup
 say 'Preparing database...'
 run 'rake db:drop'
