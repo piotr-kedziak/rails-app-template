@@ -1,18 +1,23 @@
 Feature: Authentication
 
   Scenario: Login form
-    When I go to the homepage
-    And I click link "login"
+    When I go to the home page
+    And I click i18n link "login"
     Then I should see login form
-    And I should see conditions info
-    And I should see cookies info
 
-    Scenario: Register
-      When I go to the login page
-      And I click link "register"
-      Then I should see register form
+  Scenario: Register form
+    When I go to the login page
+    And I click i18n link "register"
+    Then I should see register form
+    And I should see "user_email" field
 
-    Scenario: Reset password
-      When I go to the login page
-      And I click link "forgot_password"
-      Then I should see reset password form
+  Scenario: Reset password form
+    When I go to the login page
+    And I click i18n link "forgot_password"
+    Then I should see reset password form
+
+  Scenario: Delete own account
+    Given I am authenticated user
+    When I go to edit my account page
+    And I click remove account button
+    Then My account schould be deleted

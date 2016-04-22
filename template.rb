@@ -347,9 +347,13 @@ inside 'features' do
   template 'support/debugging.rb'
   # steps
   template 'step_definitions/auth_steps.rb'
+  template 'step_definitions/content_steps.rb'
+  template 'step_definitions/form_steps.rb'
   template 'step_definitions/links_steps.rb'
+  template 'step_definitions/lists_steps.rb'
   template 'step_definitions/nav_steps.rb'
   template 'step_definitions/navigation_steps.rb'
+  template 'step_definitions/users_steps.rb'
   # features
   template 'auth.feature'
   template 'landing.feature'

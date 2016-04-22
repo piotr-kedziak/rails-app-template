@@ -9,28 +9,36 @@ Given(/^I am authenticated user$/) do
   click_button I18n.t('login')
 end
 
+When(/^I click remove account button$/) do
+  click_button I18n.t('users.registrations.destroy.destroy')
+end
+
 Then(/^I should see login form$/) do
   # login header info...
-  page.has_content? I18n.t('users.sessions.new.header')
+  expect(page).to have_content I18n.t('users.sessions.new.header')
   # and login button
-  page.has_content? I18n.t('login')
+  expect(page).to have_content I18n.t('login')
 end
 
 Then(/^I should see conditions info$/) do
-  page.has_content? I18n.t('users.sessions.new.conditions')
+  expect(page).to have_content I18n.t('users.sessions.new.conditions')
 end
 
 Then(/^I should see cookies info$/) do
-  page.has_content? I18n.t('users.sessions.new.cookies')
+  expect(page).to have_content I18n.t('users.sessions.new.cookies')
 end
 
 Then(/^I should see register form$/) do
   # register header info...
-  page.has_content? I18n.t('users.registrations.new.header')
+  expect(page).to have_content I18n.t('users.registrations.new.header')
   # and register button
-  page.has_content? I18n.t('register')
+  expect(page).to have_button I18n.t('register')
 end
 
 Then(/^I should see reset password form$/) do
-  page.has_content? I18n.t('users.passwords.new.header')
+  expect(page).to have_content I18n.t('users.passwords.new.header')
+end
+
+Then(/^My account schould be deleted$/) do
+  expect(User.count).to eq(0)
 end
