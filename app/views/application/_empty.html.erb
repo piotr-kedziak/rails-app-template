@@ -1,0 +1,6 @@
+<%% cache [local_assigns[:info], local_assigns[:disable_back]] do %>
+  <div class="jumbotron jumbotron-empty empty text-center">
+    <p class="lead"><%%= local_assigns[:info] %></p>
+    <%%= back_btn unless local_assigns[:disable_back].present? %>
+  </div>
+<%% end %>

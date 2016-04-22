@@ -1,0 +1,15 @@
+<%% cache [local_assigns[:header], local_assigns[:lead], local_assigns[:btn]] do %>
+  <div class="page-header">
+    <h1 class="<%%= 'clearfix' if local_assigns[:btn].present? %>">
+      <%%= local_assigns[:header] %>
+      <%% if local_assigns[:btn].present? %>
+        <span class="pull-right">
+          <%%= local_assigns[:btn] %>
+        </span>
+      <%% end %>
+    </h1>
+    <%% if local_assigns[:lead].present? %>
+      <p class="lead"><%%= local_assigns[:lead] %></p>
+    <%% end %>
+  </div>
+<%% end %>
