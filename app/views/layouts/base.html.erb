@@ -9,7 +9,7 @@
   <%%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
   <%%= yield(:stylesheets) %>
   <%%= csrf_meta_tags %>
-  <%%= action_cable_meta_tag %>
+  <%%#= action_cable_meta_tag %>
 </head>
 <body class="<%%= layout_body_css_class %>">
   <%%= content_for?(:content) ? yield(:content) : yield %>
