@@ -77,6 +77,21 @@ inside 'app/models/concerns' do
   template 'timestampable.rb'
 end
 
+say 'creating controllers concerns...'
+inside 'app/controllers/concerns' do
+  template 'devise.rb'
+  template 'i18n.rb'
+  template 'layout.rb'
+end
+
+say 'updating application controller class...'
+inject_into_file 'app/controllers/application_controller.rb', after: "ActionController::Base\n" do <<-FILE
+  include Concerns::Devise
+  include Concerns::I18n
+  include Layout
+FILE
+end
+
 # Redis
 say 'Installing Redis...'
 if File.open('Gemfile') { |f| f.find { |l| l =~ /# gem 'redis'/ } }
