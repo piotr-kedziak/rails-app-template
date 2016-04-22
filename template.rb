@@ -71,6 +71,12 @@ inside 'app/assets/stylesheets' do
   template '_variables.scss'
 end
 
+say 'creating models concerns...'
+inside 'app/models/concerns' do
+  template 'nameable.rb'
+  template 'timestampable.rb'
+end
+
 # Redis
 say 'Installing Redis...'
 if File.open('Gemfile') { |f| f.find { |l| l =~ /# gem 'redis'/ } }
