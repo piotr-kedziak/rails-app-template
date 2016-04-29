@@ -10,7 +10,7 @@ Given(/^I am authenticated user$/) do
 end
 
 When(/^I click remove account button$/) do
-  click_button I18n.t('users.registrations.destroy.destroy')
+  click_link I18n.t('users.registrations.destroy.destroy')
 end
 
 Then(/^I should see login form$/) do
