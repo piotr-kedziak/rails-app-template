@@ -211,11 +211,45 @@ migration_file = Dir['db/migrate/*_add_cookies_accepted_to_users.rb'].first
 inject_into_file migration_file, after: ':boolean' do
   ', default: true'
 end
+# user name
+inside 'app/controllers' do
+  template 'users_controller.rb'
+end
+generate 'migration add_name_to_users name:index'
+inject_into_file 'app/controllers/application_controller.rb', before: "end\n" do <<-FILE
+
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+      # devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name])
+    end
+  # protected
+FILE
+end
 # user model
+inject_into_file 'app/models/user.rb', after: "class User < ActiveRecord::Base\n" do <<-FILE
+  include Nameable
+  include Timestampable
+FILE
+end
 inject_into_file 'app/models/user.rb', before: "end\n" do <<-FILE
+
+  scope :list, -> { oldest_first.by_name }
 
   validates :terms_accepted, acceptance: { accept: true }
   validates :cookies_accepted, acceptance: { accept: true }
+  validates :name, length: { in: 2..150 }
+
+  def name_or_email
+    name.present? ? name : email
+  end
+
+  def to_s
+    name_or_email || id
+  end
 FILE
 end
 # devise routes
@@ -231,7 +265,8 @@ inside 'app/views/users' do
   template 'passwords/edit.html.erb'
   template 'passwords/new.html.erb'
   template 'registrations/_destroy.html.erb'
-  template 'registrations/_form.html.erb'
+  template 'registrations/_edit_form.html.erb'
+  template 'registrations/_new_form.html.erb'
   template 'registrations/edit.html.erb'
   template 'registrations/new.html.erb'
   template 'sessions/new.html.erb'

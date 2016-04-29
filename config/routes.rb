@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   # autenticate user before go
   authenticate :user do
+    resources :users, only: [:update, :destroy]
   end
 
   authenticated :user do

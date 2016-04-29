@@ -10,6 +10,7 @@ Feature: Authentication
     And I click i18n link "register"
     Then I should see register form
     And I should see "user_email" field
+    And I should see "user_name" field
 
   Scenario: Reset password form
     When I go to the login page
