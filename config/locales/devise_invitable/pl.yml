@@ -1,18 +1,24 @@
 pl:
   devise:
     failure:
-      invited: "Masz oczekujące zaproszenie. Proszę je zaakceptować przed kontynuacją."
+      invited: |
+        Masz oczekujące zaproszenie.
+        Proszę je zaakceptować przed kontynuacją.
     invitations:
-      send_instructions: "Zaproszenie zostało wysłane na adres %{email}."
-      invitation_token_invalid: "Nieprawidłowy kod zaproszenia!"
-      updated: "Hasło ustawione. Zalogowano na Twoje konto."
-      updated_not_active: "Hasło ustawione."
-      no_invitations_remaining: "Wyczerpany limit zaproszeń"
-      invitation_removed: "Twoj zaproszenie zostało usunięte."
+      send_instructions: Zaproszenie zostało wysłane na adres %{email}.
+      invitation_token_invalid: Nieprawidłowy kod zaproszenia!
+      updated: Hasło ustawione. Zalogowano na Twoje konto.
+      updated_not_active: Hasło ustawione.
+      no_invitations_remaining: Wyczerpany limit zaproszeń
+      invitation_removed: Twoj zaproszenie zostało usunięte.
     mailer:
       invitation_instructions:
-        subject: "Zaproszenie do konta"
-        hello: "Cześć %{email}"
-        someone_invited_you: "Otrzymałeś/aś zaproszenie do serwisu %{url}, możesz zaakceptować je klikając na poniższy przycisk."
-        accept: "Zaakceptuj zaproszenie"
-        ignore: "Jeśli nie chcesz skorzystać z zaproszenia zignoruj tą wiadomość. Twoje kotno nie zostanie utworzone dopuki nie zaakceptujesz zaproszenia."
+        subject: Zaproszenie do konta
+        hello: Cześć %{email}
+        someone_invited_you: |
+          Otrzymałeś/aś zaproszenie do serwisu %{url},
+          możesz zaakceptować je klikając na poniższy przycisk.
+        accept: Zaakceptuj zaproszenie
+        ignore: |
+          Jeśli nie chcesz skorzystać z zaproszenia zignoruj tą wiadomość.
+          Twoje konto nie zostanie utworzone, dopóki nie zaakceptujesz zaproszenia.
