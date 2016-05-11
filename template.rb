@@ -158,6 +158,8 @@ group :development do
   # gem 'rails-footnotes'
   # Rails Panel for Chrome
   # gem 'meta_request'
+  # https://github.com/DockYard/capybara-email
+  gem 'capybara-email'
 end
 
 group :test do
@@ -371,10 +373,29 @@ end
 # Cucumber
 say 'Installing Cucumber...'
 generate 'cucumber:install'
-append_file 'features/support/env.rb' do <<-FILE
+env_file = 'features/support/env.rb'
+inject_into_file env_file, after: "require 'cucumber/rails'\n" do <<-FILE
+require 'capybara/email'
+FILE
+inject_into_file env_file, before: "\n  DatabaseCleaner.strategy = :truncation\n" do <<-FILE
+  require 'database_cleaner'
+  require 'database_cleaner/cucumber'
+FILE
+append_file env_file do <<-FILE
+# DatabaseCleaner
+Around do |scenario, block|
+  DatabaseCleaner.cleaning(&block)
+end
 
 # Factory Girl
 World(FactoryGirl::Syntax::Methods)
+# CapybaraEmail
+World(Capybara::Email::DSL)
+
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
 FILE
 end
 # copy basic features / tests / support files
