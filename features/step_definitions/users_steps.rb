@@ -1,5 +1,5 @@
 Given(/^There aren't any users except me$/) do
-  User.where.not(id: @user).destroy_all
+  User.where.not(id: @current_user).destroy_all
 end
 
 Given(/^There are (\d+) other users$/) do |count|

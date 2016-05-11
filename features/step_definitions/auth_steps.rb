@@ -1,10 +1,10 @@
 Given(/^I am authenticated user$/) do
-  @user = FactoryGirl.create(:user)
+  @current_user = FactoryGirl.create(:user)
 
   step "I go to the login page"
 
-  fill_in 'user_email', with: @user.email
-  fill_in 'user_password', with: @user.password
+  fill_in 'user_email', with: @current_user.email
+  fill_in 'user_password', with: @current_user.password
 
   click_button I18n.t('login')
 end
