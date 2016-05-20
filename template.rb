@@ -360,6 +360,8 @@ end
 def main_app
   Rails.application.class.routes.url_helpers
 end
+
+include Rails.application.class.routes.url_helpers
 FILE
 end
 # copy basic RSpec tests

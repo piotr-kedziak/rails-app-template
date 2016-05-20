@@ -9,3 +9,7 @@ end
 Then(/^I shouldn't see "([^"]*)" in navigation$/) do |name|
   expect(page).not_to have_link I18n.t(".nav.top.#{name}")
 end
+
+Then(/^I should see dashboard navigation link$/) do
+  step "I should see \"dashboard\" in navigation"
+end
