@@ -160,8 +160,6 @@ group :development do
   # gem 'rails-footnotes'
   # Rails Panel for Chrome
   # gem 'meta_request'
-  # https://github.com/DockYard/capybara-email
-  gem 'capybara-email'
 end
 
 group :test do
@@ -177,6 +175,8 @@ group :test do
   # Time freeze or travel for mocking
   # https://github.com/travisjeffery/timecop
   gem 'timecop'
+  # https://github.com/DockYard/capybara-email
+  gem 'capybara-email'
 end
 FILE
 
@@ -379,10 +379,12 @@ env_file = 'features/support/env.rb'
 inject_into_file env_file, after: "require 'cucumber/rails'\n" do <<-FILE
 require 'capybara/email'
 FILE
+end
 inject_into_file env_file, before: "\n  DatabaseCleaner.strategy = :truncation\n" do <<-FILE
   require 'database_cleaner'
   require 'database_cleaner/cucumber'
 FILE
+end
 append_file env_file do <<-FILE
 # DatabaseCleaner
 Around do |scenario, block|
