@@ -47,6 +47,7 @@ pl:
         current_password: Aktualne hasło
         email: e-mail
         last_sign_in_at: Ostatnie logowanie
+        name: Nazwa
         password: Hasło
         password_confirmation: Potwierdzenie hasła
         remember_me: Zapamiętaj mnie
@@ -64,8 +65,11 @@ pl:
               blank: nie może być pusty
               taken: jest już używany
               invalid: niepoprawny
+            name:
+              too_short: jest zbyt krótka
             password:
               blank: nie może być puste
+              too_short: jest zbyt krótkie
             terms_accepted:
               accepted: jest wymagana
             cookies_accepted:
