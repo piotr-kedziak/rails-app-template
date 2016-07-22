@@ -1,4 +1,4 @@
-<%% cache @<%= singular_table_name do %>
+<%% cache @<%= singular_table_name %> do %>
   <div class="jumbotron">
   <% attributes.reject(&:password_digest?).each do |attribute| -%>
     <p>
