@@ -19,9 +19,21 @@ module Erb # :nodoc:
             template filename, File.join("app/views", controller_file_path, filename)
           end
         end
+
+        create_list_partial
       end
 
-    protected
+      # creates list/_{model}.html.erb file
+      # file name is based on singular_table_name
+      def create_list_partial
+        formats.each do |format|
+          template = filename_with_extensions('list/_element', format)
+          filename = filename_with_extensions("list/_#{singular_table_name}", format)
+          template template, File.join("app/views", controller_file_path, filename)
+        end
+      end
+
+      protected
 
       def available_views
         %w(index edit show new _form _empty _list)
