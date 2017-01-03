@@ -8,11 +8,10 @@ module Layout
   end
 
   protected
-    # we need to choose layout :)
-    def choose_layout
-      return false    if request.xhr?
-      return 'devise' if devise_controller? && ! user_signed_in?
-      return 'application'
-    end
-  # protected
+
+  def choose_layout
+    return false    if request.xhr?
+    return 'devise' if devise_controller? && !user_signed_in?
+    'application'
+  end
 end

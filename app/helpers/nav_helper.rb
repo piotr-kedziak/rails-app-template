@@ -3,16 +3,8 @@ module NavHelper
     user_signed_in?
   end
 
-  def nav_element options
-    return if options.blank?
-
-    locals = {
-      name: options[:name],
-      path: options[:path],
-      id: options[:id],
-      badge: options[:badge]
-    }
-
+  def nav_element(locals)
+    return if locals.blank?
     render partial: 'nav/element', locals: locals
   end
 end

@@ -1,11 +1,9 @@
 FactoryGirl.define do
   factory :user do
-    name      { Faker::Name.name }
-    email     { Faker::Internet.email }
-    password  { Faker::Internet.password }
+    sequence(:email)      { |n| "user-#{n}@example.com" }
+    sequence(:name)       { |n| "User #{n}" }
+    password              { 'Qwert12345' }
     password_confirmation { |u| u.password }
-
-    terms_accepted    true
-    cookies_accepted  true
+    terms_accepted        true
   end
 end

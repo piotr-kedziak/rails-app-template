@@ -28,8 +28,8 @@ pl:
         delete: Usuwanie konta
       new:
         header: Rejestracja
+      new_form:
         conditions: Akceptuję warunki serwisu zawarte w regulaminie
-        cookies: Nie chcę widzieć powiadomień o plikach cookies
     sessions:
       new:
         header: Zaloguj się
@@ -43,7 +43,6 @@ pl:
       user: Użytkownik
     attributes:
       user:
-        cookies_accepted: Zgoda na ciasteczka
         current_password: Aktualne hasło
         email: e-mail
         last_sign_in_at: Ostatnie logowanie
@@ -71,6 +70,4 @@ pl:
               blank: nie może być puste
               too_short: jest zbyt krótkie
             terms_accepted:
-              accepted: jest wymagana
-            cookies_accepted:
               accepted: jest wymagana

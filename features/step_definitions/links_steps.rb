@@ -7,15 +7,15 @@ When(/^I click i18n link "([^"]*)"$/) do |name|
 end
 
 When(/^I click login link$/) do
-  step "I click i18n link \"login\""
+  step('I click i18n link "login"')
 end
 
 When(/^I click register link$/) do
-  step "I click i18n link \"register\""
+  step('I click i18n link "register"')
 end
 
 When(/^I click forgot password link$/) do
-  step "I click i18n link \"forgot_password\""
+  step('I click i18n link "forgot_password"')
 end
 
 Then(/^I should see link "([^"]*)"$/) do |name|
@@ -23,7 +23,7 @@ Then(/^I should see link "([^"]*)"$/) do |name|
 end
 
 Then(/^I should see i18n link "([^"]*)"$/) do |name|
-  step "I should see link \"#{I18n.t(name)}\""
+  step("I should see link \"#{I18n.t(name)}\"")
 end
 
 Then(/^I shouldn't see link "([^"]*)"$/) do |name|
@@ -31,13 +31,13 @@ Then(/^I shouldn't see link "([^"]*)"$/) do |name|
 end
 
 Then(/^I shouldn't see i18n link "([^"]*)"$/) do |name|
-  step "I shouldn't see link \"#{I18n.t(name)}\""
+  step("I shouldn't see link \"#{I18n.t(name)}\"")
 end
 
 Then(/^I should see login link$/) do
-  step "I should see i18n link \"login\""
+  step('I should see i18n link "login"')
 end
 
 Then(/^I should see logout link$/) do
-  step "I should see i18n link \"logout\""
+  step('I should see i18n link "logout"')
 end

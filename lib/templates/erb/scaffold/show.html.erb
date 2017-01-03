@@ -1,14 +1,16 @@
 <%% cache @<%= singular_table_name %> do %>
-  <div class="jumbotron">
-  <% attributes.reject(&:password_digest?).each do |attribute| -%>
-    <p>
-      <strong><%%= t '.<%= attribute.human_name.downcase %>' %></strong>
-      <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
-    </p>
-  <% end -%>
-  </div>
-  <div class="well text-center">
-    <%%= back_btn %>
-    <%%= link_to t('edit'), edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-warning' %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+    <% attributes.reject(&:password_digest?).each do |attribute| -%>
+      <p>
+        <strong><%%= t '.<%= attribute.human_name.downcase %>' %></strong>
+        <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
+      </p>
+    <% end -%>
+    </div>
+    <div class="panel-footer text-center">
+      <%%= back_btn %>
+      <%%= link_to t('edit'), edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-warning' %>
+    </div>
   </div>
 <%% end %>

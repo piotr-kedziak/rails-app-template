@@ -6,7 +6,7 @@ Then(/^I should see "([^"]*)" list$/) do |name|
   expect(page).to have_css("table##{name}-list")
 end
 
-Then(/^I shouldn't see "([^"]*)" list$/) do |arg1|
+Then(/^I shouldn't see "([^"]*)" list$/) do |name|
   expect(page).not_to have_css("table##{name}-list")
 end
 

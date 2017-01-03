@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # autenticate user before go
   authenticate :user do
-    resources :users, only: [:update, :destroy]
+    resources :users, only: %i(update destroy)
   end
 
   authenticated :user do
@@ -17,5 +17,5 @@ Rails.application.routes.draw do
   end
 
   # capture all non-existing routes
-  get '*any', via: :all, to: redirect('/404'), constraints: -> (req) { !(req.fullpath.start_with?('/rails')) }
+  get '*any', via: :all, to: redirect('/404'), constraints: -> (req) { !req.fullpath.start_with?('/rails') }
 end

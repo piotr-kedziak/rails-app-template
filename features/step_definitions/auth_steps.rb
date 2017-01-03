@@ -1,10 +1,10 @@
 Given(/^I am authenticated user$/) do
   @current_user = FactoryGirl.create(:user)
 
-  step "I go to the login page"
+  step('I go to the login page')
 
-  fill_in 'user_email', with: @current_user.email
-  fill_in 'user_password', with: @current_user.password
+  fill_in('user_email', with: @current_user.email)
+  fill_in('user_password', with: @current_user.password)
 
   click_button I18n.t('login')
 end
@@ -22,10 +22,6 @@ end
 
 Then(/^I should see conditions info$/) do
   expect(page).to have_content I18n.t('users.sessions.new.conditions')
-end
-
-Then(/^I should see cookies info$/) do
-  expect(page).to have_content I18n.t('users.sessions.new.cookies')
 end
 
 Then(/^I should see register form$/) do

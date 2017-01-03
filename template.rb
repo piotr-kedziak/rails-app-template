@@ -130,8 +130,6 @@ group :development, :test do
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
   gem 'rails-controller-testing'
-  # https://github.com/stympy/faker
-  gem 'faker'
 end
 
 group :development do
@@ -160,6 +158,8 @@ group :development do
   # gem 'rails-footnotes'
   # Rails Panel for Chrome
   # gem 'meta_request'
+  # https://github.com/yujinakayama/guard-rubocop
+  gem 'guard-rubocop'
 end
 
 group :test do
@@ -209,12 +209,6 @@ migration_file = Dir['db/migrate/*_add_terms_accepted_to_users.rb'].first
 inject_into_file migration_file, after: ':boolean' do
   ', default: true'
 end
-# cookies
-generate 'migration add_cookies_accepted_to_users cookies_accepted:boolean:index'
-migration_file = Dir['db/migrate/*_add_cookies_accepted_to_users.rb'].first
-inject_into_file migration_file, after: ':boolean' do
-  ', default: true'
-end
 # user name
 inside 'app/controllers' do
   template 'users_controller.rb'
@@ -225,12 +219,12 @@ inject_into_file 'app/controllers/application_controller.rb', before: "end\n" do
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name])
-      # devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name])
-    end
-  # protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+    # devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name])
+  end
 FILE
 end
 # user model
@@ -244,8 +238,7 @@ inject_into_file 'app/models/user.rb', before: "end\n" do <<-FILE
   scope :list, -> { oldest_first.by_name }
 
   validates :terms_accepted, acceptance: { accept: true }
-  validates :cookies_accepted, acceptance: { accept: true }
-  validates :name, length: { in: 2..150 }
+  validates :name, length: { maximum: 40 }
 
   def name_or_email
     name.present? ? name : email
@@ -285,14 +278,14 @@ gsub_file('config/initializers/devise.rb',
   'config.scoped_views = true')
 gsub_file('config/initializers/devise.rb',
   /config.sign_out_via = :delete/,
-  'config.sign_out_via = Rails.env.test? ? [:delete, :get] : :delete')
+  'config.sign_out_via = Rails.env.test? ? %i(delete get) : :delete')
 
 say 'Adding mailing settings for environments files...'
 inject_into_file 'config/environments/development.rb', after: "config.action_mailer.raise_delivery_errors = false\n" do
   "config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }"
 end
 inject_into_file 'config/environments/test.rb', after: "config.action_mailer.delivery_method = :test\n" do
-  "config.action_mailer.default_url_options = { host: 'localhost' }"
+  "  config.action_mailer.default_url_options = { host: 'localhost' }"
 end
 
 # database setup
@@ -364,13 +357,18 @@ end
 include Rails.application.class.routes.url_helpers
 FILE
 end
+gsub_file 'spec/rails_helper.rb', %r(#\s*Dir), 'Dir\1'
 # copy basic RSpec tests
 inside 'spec' do
   copy_file 'controllers/home_controller_spec.rb'
   copy_file 'controllers/landing_controller_spec.rb'
   copy_file 'helpers/btn_helper_spec.rb'
   copy_file 'models/user_spec.rb'
-  copy_file 'views/home/index.html.erb_spec.rb'
+  copy_file 'support/devise_authenticable.rb'
+  copy_file 'support/htmlable.rb'
+  copy_file 'support/nameable.rb'
+  copy_file 'support/terms_acceptable.rb'
+  copy_file 'support/timestampable.rb'
   copy_file 'views/landing/index.html.erb_spec.rb'
 end
 
@@ -429,6 +427,10 @@ inside 'factories' do
   copy_file 'users.rb'
 end
 
+# rubocop
+say 'Rubocop config...'
+copy_file '.rubocop.yml'
+
 # Guard
 say 'Installing Guard...'
 run 'bundle exec guard init'
@@ -442,6 +444,6 @@ run 'rake db:migrate RAILS_ENV=test'
 after_bundle do
   say 'initializeing git repository'
   git :init
-  git add: "."
+  git add: '.'
   git commit: %Q{ -m 'Initial commit' }
 end
