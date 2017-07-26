@@ -134,11 +134,11 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 3.0'
-  gem 'listen', '~> 3.0.5'
+  gem 'web-console'
+  gem 'listen'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
   # Guard::RSpec automatically run your specs (much like autotest) https://rubygems.org/gems/guard-rspec
   # https://github.com/guard/guard-rspec
   gem 'guard-rspec', require: false
@@ -195,7 +195,7 @@ end
 
 # Devise
 say 'Intalling Devise...'
-gem 'devise', '>= 4.0.0.rc2', github: 'plataformatec/devise'
+gem 'devise'
 run 'bundle install'
 generate 'devise:install'
 inject_into_file 'config/environments/development.rb', after: "config.action_mailer.raise_delivery_errors = false\n" do <<-FILE
